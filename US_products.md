@@ -50,3 +50,14 @@ Nous partons du principe que l'api est interne à un service de gestion de produ
 - Si les données saisies sont invalides, le système renvoie une erreur 400 avec un retour sur la validation.
 - Les détails mis à jour du produit sont reflétés dans la base de données.
 - Le système répond avec un message de confirmation et un code statut 200.
+
+
+#### **Supprimer un produit (DELETE /products/<id>)**
+**En tant qu'** administrateur,
+**Je veux** supprimer un produit du système,
+**Afin de** pouvoir retirer les produits obsolètes ou incorrects.
+
+**Critères d'acceptation :**
+- Le système supprime le produit associé à l'ID fourni.
+- Si l'ID du produit n'existe pas, le système renvoie une erreur 404, bien qu'un code 200 serait tout aussi acceptable.
+- Si la suppression est réussie, le système répond avec un message de confirmation et un code statut 200.

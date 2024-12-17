@@ -66,3 +66,15 @@ def update_product(product_id):
 
     db.session.commit()
     return jsonify(product.to_dict()), 200
+
+# DELETE /products/<id> - Supprimer un produit par ID
+@product_bp.route('/products/<int:product_id>', methods=['DELETE'])
+def delete_product(product_id):
+    product = Product.query.get(product_id)
+    if not product:
+        # On pourrait également retourner un code 200 ici, mais un code 404 est plus approprié
+        return jsonify({'message': 'Produit non trouvé'}), 404
+
+    db.session.delete(product)
+    db.session.commit()
+    return jsonify({'message': f'Produit {product_id} supprimé avec succès'}), 200
