@@ -12,7 +12,7 @@ Nous partons du principe que l'api est interne à un service de gestion de produ
 **Critères d'acceptation :**
 - Le système récupère une liste de tous les produits depuis la base de données.
 - La réponse inclut les détails essentiels des produits (par exemple, ID, nom, prix, quantité en stock).
-- Si aucun produit n'existe, le système renvoie une liste vide.
+- Si aucun produit n'existe, le système renvoie une liste vide avec un code de statut 204.
 
 #### **Récupérer un produit par ID (GET /products/<id>)**
 **En tant qu'** utilisateur,
