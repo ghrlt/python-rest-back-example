@@ -36,3 +36,17 @@ Nous partons du principe que l'api est interne à un service de gestion de produ
 - Le système crée un nouveau produit et le stocke dans la base de données.
 - Si les données saisies sont invalides (par exemple, champs requis manquants), le système renvoie une erreur 400 avec un retour sur la validation.
 - Après la création, le système répond avec l'ID du nouveau produit créé ainsi qu'un code statut 201.
+
+
+#### **Mettre à jour un produit (PUT /products/<id>)**
+**En tant qu'** administrateur,
+**Je veux** mettre à jour les informations d'un produit,
+**Afin de** pouvoir corriger ou ajuster les données si nécessaire.
+
+**Critères d'acceptation :**
+- Le système met à jour le produit sur la base de l'ID fourni et du corps de la requête.
+- Une requête valide contient uniquement les champs à mettre à jour (par exemple, prix, quantité en stock).
+- Si l'ID du produit n'existe pas, le système renvoie une erreur 404.
+- Si les données saisies sont invalides, le système renvoie une erreur 400 avec un retour sur la validation.
+- Les détails mis à jour du produit sont reflétés dans la base de données.
+- Le système répond avec un message de confirmation et un code statut 200.

@@ -39,3 +39,30 @@ def create_product():
     db.session.commit()
 
     return jsonify(product.to_dict()), 201
+
+# PUT /products/<id> - Mettre à jour un produit par ID
+@product_bp.route('/products/<int:product_id>', methods=['PUT'])
+def update_product(product_id):
+    product = Product.query.get(product_id)
+    if not product:
+        return jsonify({'message': 'Produit non trouvé'}), 404
+
+    data = request.get_json()
+    name = data.get('name')
+    price = data.get('price')
+    stock = data.get('stock')
+
+    if name is not None:
+        product.name = name
+
+    if price is not None:
+        product.price = price
+
+    if stock is not None:
+        product.stock = stock
+
+    if name is None and price is None and stock is None:
+        return jsonify({'message': 'Aucune données fournies'}), 400
+
+    db.session.commit()
+    return jsonify(product.to_dict()), 200
