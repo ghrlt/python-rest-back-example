@@ -21,3 +21,21 @@ def get_product(product_id):
         return jsonify({'message': 'Produit non trouvé'}), 404
     
     return jsonify(product.to_dict()), 200
+
+# POST /products - Créer un nouveau produit
+@product_bp.route('/products', methods=['POST'])
+def create_product():
+    data = request.get_json()
+    name = data.get('name')
+    price = data.get('price')
+    stock = data.get('stock')
+
+    # Validation des données
+    if not name or not price or not stock:
+        return jsonify({'message': 'Nom, prix et stock sont requis'}), 400
+
+    product = Product(name=name, price=price, stock=stock)
+    db.session.add(product)
+    db.session.commit()
+
+    return jsonify(product.to_dict()), 201
